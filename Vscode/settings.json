@@ -1,0 +1,5 @@
+{
+    "code-runner.executorMap": {
+        "bat": "cd $dir && start cmd /k $fileName && exit"
+    }
+}

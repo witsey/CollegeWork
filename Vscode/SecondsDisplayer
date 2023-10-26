@@ -1,0 +1,18 @@
+#include <iostream>
+
+using namespace std;
+
+int main() {
+    
+ int input_seconds;
+ int output_minutes;
+ int output_seconds;
+ 
+ cout << "Enter an Integer for seconds: ";
+ cin >> input_seconds;
+ 
+ output_minutes = input_seconds / 60;
+ output_seconds = input_seconds % 60;
+ 
+ cout << input_seconds << " seconds is " << output_minutes << " minutes and " << output_seconds << " seconds";
+}
