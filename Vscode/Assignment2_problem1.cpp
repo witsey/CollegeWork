@@ -8,7 +8,7 @@ using namespace std;
 int customers_IDs []                     { 1 , 2 , 3 };
 long long int customers_phone_numbers [] { 20123456789 , 20123456788 , 20123456787 };
 int customers_wallets []                 { 1000 , 2000 , 500 };
-int customers_points []                  { 0 , 0 , 0};
+int customers_points []                  { 15 , 99 , 14};
 
 int customers_number = 3;
 
@@ -28,6 +28,7 @@ void print_customers();
 void print_items();
 void make_order();
 void print_highest_customer();
+void sort_customers();
 void back_to_main();
 
 // Program
@@ -36,7 +37,7 @@ int main() {
 
     int choice;
     
-    cout << "Menu: " << endl << "\n 1.Add a customer \t2.Add a menu item \n 3.Print all items \t4.Print all items \n 5.Make an order \t6.Redeem an item " << endl << "\n 7.Show the customer with the highest ponits \n\nPlease choose an option from the menu by entering its number: ";
+    cout << "Menu: " << endl << "\n 1.Add a customer \t2.Add a menu item \n 3.Print all items \t4.Print all items \n 5.Make an order \t6.Redeem an item " << endl << "\n 7.Show the customer with the highest ponits \n\n 8.Sort customers based on earned points \n\nPlease choose an option from the menu by entering its number: ";
     cin >> choice;
 
     switch (choice) {
@@ -72,11 +73,21 @@ int main() {
         }
         break;
 
+        case 6: {
+
+            cout << "";
+        }
+
         case 7: {
 
             print_highest_customer();
         }
         break;
+
+        case 8: {
+
+            sort_customers();
+        }
     }
 }
 
@@ -252,6 +263,50 @@ void print_highest_customer() {
         cout << "\n\nThe customer with the highest points is Customer " << highest_customer_id << endl;
         cout << "With " << highest_points << " point(s)" << endl;
 
+    }
+
+    back_to_main();
+}
+
+
+void sort_customers() {
+
+    int sorted_customers_points [ customers_number ];
+    int sorted_customers_IDs [ customers_number ];
+    
+    // Initialising new arrays for the sorted descending  list
+
+
+    for ( int i = 0 ; i < customers_number ; i++) {
+
+        sorted_customers_points[i] = customers_points[i];
+        sorted_customers_IDs[i] = customers_IDs[i];
+    }
+    
+    // Sorting the arrays
+
+
+    for ( int i = 0 ; i < customers_number ; i++)  {
+        
+        for ( int j = 0 ; j < customers_number - i -1 ; j++) {
+            
+            if ( sorted_customers_points[j] < sorted_customers_points[j + 1] ) {
+                
+                swap( sorted_customers_points[j], sorted_customers_points[j + 1]);
+                swap( sorted_customers_IDs[j], sorted_customers_IDs[j + 1]);
+                
+            }
+
+        }
+
+
+    }
+
+    // Printing the arrays
+
+    for ( int k = 0; k < customers_number; k++) {
+
+        cout << "\n\n" << k + 1 << ".Customer " << sorted_customers_IDs[k] << " Has " << sorted_customers_points[k] << " Point(s)" << endl;
     }
 
     back_to_main();
