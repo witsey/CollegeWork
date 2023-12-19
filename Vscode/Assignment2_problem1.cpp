@@ -88,6 +88,8 @@ int main() {
 
             sort_customers();
         }
+
+        cout << "Hello world";
     }
 }
 
