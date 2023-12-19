@@ -2,7 +2,6 @@
 
 #include <iostream>
 using namespace std;
-hello world
 // Customers Data
 
 int customers_IDs []                     { 1 , 2 , 3 };
