@@ -1,1 +1,1 @@
-swap
+customers_number++;

@@ -7,7 +7,7 @@ using namespace std;
 
 int customers_IDs []                     { 1 , 2 , 3 };
 long long int customers_phone_numbers [] { 20123456789 , 20123456788 , 20123456787 };
-int customers_wallets []                 { 1000 , 2000 , 500 };
+int customers_wallets []                 { 10 , 2000 , 500 };
 int customers_points []                  { 15 , 15 , 15};
 
 int customers_number = 3;
@@ -16,7 +16,7 @@ int customers_number = 3;
 
 int items_IDs []      { 1 , 2 , 3 , 4 , 5};
 string items_names [] { "cappuccino" , "espresso" , "Turkish coffee" , "lemon" , "orange" };
-int items_prices []   { 1000 , 50 , 50 , 25 , 25 };
+int items_prices []   { 50 , 50 , 50 , 25 , 25 };
 
 int items_number = 5;
 
@@ -25,7 +25,7 @@ int items_number = 5;
 void add_customer();
 void add_item();
 void print_customers();
-void print_items();
+void print_items( bool ask );
 void make_order();
 void print_highest_customer();
 void sort_customers();
@@ -37,7 +37,7 @@ int main() {
 
     int choice;
     
-    cout << "Menu: " << endl << "\n 1.Add a customer \t2.Add a menu item \n 3.Print all items \t4.Print all items \n 5.Make an order \t6.Redeem an item " << endl << "\n 7.Show the customer with the highest ponits \n\n 8.Sort customers based on earned points \n\nPlease choose an option from the menu by entering its number: ";
+    cout << "Menu: " << endl << "\n 1.Add a customer \t2.Add a menu item \n 3.Print all customers \t4.Print all items \n 5.Make an order \t6.Redeem an item " << endl << "\n 7.Show the customer with the highest ponits \n\n 8.Sort customers based on earned points \n\nPlease choose an option from the menu by entering its number: ";
     cin >> choice;
 
     switch (choice) {
@@ -63,7 +63,7 @@ int main() {
 
         case 4: {
 
-            print_items();
+            print_items(1);
         }
         break;
 
@@ -125,11 +125,21 @@ void add_customer() {
 void add_item() {
 
     bool again;
+
+    cout << "To add an item please enter the following" << endl;
     
     do {
+
+        cout << "Item's name: ";
+        cin >> items_names[ items_number ];
         
-        cout << "\nItem's ID: ";
+        
+        cout << "\n\nItem's ID: ";
         cin >> items_IDs[ items_number ];
+
+        cout << "\n\nItem's price: ";
+        cin >> items_prices[ items_number ];
+
     
         items_number++;
 
@@ -158,7 +168,7 @@ void print_customers() {
 }
 
 
-void print_items() {
+void print_items( bool ask ) {
 
     for ( int i = 0; i < items_number; i++) {
 
@@ -166,9 +176,12 @@ void print_items() {
         cout << "ID: " << items_IDs[i] << endl;
         cout << "Price: " << items_prices [i] << endl;
         
-    } 
+    }
 
+    if ( ask ) {
 
+        back_to_main();
+    }
 }
 
 
@@ -177,61 +190,93 @@ void make_order() {
     int buyer_id;
     int order;
     int points;
-    bool again;
+    int orders_counter = 0;
+    int balance;
+    bool reorder;
+    bool proceed;
+    bool new_order;
 
     cout << "\n\nTo make an order, Please input your ID first: ";
     
     cin >> buyer_id;
 
+    cout << "Items Menu: " << endl;
+    print_items(0);
+    
+        
     do {
+        
+        int total = 0;
+        
+        do {
 
-        cout << "Items Menu: " << endl;
-        print_items();
-
-        cout << "\nPlease choose what you would like to order by entering its ID: ";
-        cin >> order;
-
-        for ( int i = 0; i < items_number; i++) {
-
-            if ( order == items_IDs[i] ) {
-
+            cout << "\nPlease choose what you would like to order by entering its ID: ";
+            cin >> order;
             
-                for ( int j = 0; j < customers_number; j++) {
+            orders_counter++;
+            
+            for ( int i = 0; i < items_number; i++) {
 
-                    if ( buyer_id == customers_IDs[j] ) {
-                        
-                        if ( customers_wallets[j] >= items_prices[i] ) {
-                            
-                            points = ( items_prices[i] / 4 );
-                            customers_points[j] += points;
+                if ( order == items_IDs[i] ) {
 
-                            cout << "\nYou've bought " << items_names[i] << "!" << endl;
-                            customers_wallets[j] = customers_wallets[j] - items_prices[i];
-                            cout << "\n-$" << items_prices[i] << " from your wallet." << endl;
-
-                            cout << "Your ballance is: " << customers_wallets[j] << "$" << endl;
-                            cout << "And you've gained " << points << " points from this purchase!" << endl;
-                            cout << "Your current points: " << customers_points[j] << " point(s)" << endl;
-                    
-                            break;
-                        }
-                        else {
-
-                            cout << "\nSorry You dont have enough money to order this item" << endl;
-                            break;
-                        }
-                        
-                    }
-                
+                    total += items_prices[i];
                 }
-                break;
+
             }
+            
+            cout << "\n\nDo you want to order another item? ( 1 for yes, 0 for no): ";
+            cin >> reorder;
+
+            if ( reorder ) {
+
+                cout << "Type the item ID to order it: ";
+            }
+
+        } while ( reorder );
+
+        cout << "\n\nYour total is: " << total << "$ " << endl;
+
+        cout << "Do you want to proceed or cancel the order? ( 1 for yes, 0 to cancel the order ): ";
+        cin >> proceed;
+
+
+        if ( proceed ) {
+
+            for ( int k = 0; k < customers_number; k++) {
+
+                if ( buyer_id == customers_IDs[k] ) {
+
+                    if ( customers_wallets[k] >= total ) {
+
+                        customers_wallets[k] -= total;
+                        balance = customers_wallets[k];
+
+                        points = ( total / 4);
+                        customers_points[k] += points;
+                        
+                        cout << "\n-$" << total << " from your wallet, your current balance is: " << balance << "$" << endl;
+                        cout << "\nAnd you've gained " << points << " point(s)!" << endl;  
+                        
+                        break;
+
+                    }
+
+                    else {
+
+                        cout << "\nSorry, You Don't have enough money to order this item." << endl;
+                    }
+
+                }
+            }
+            
+
         }
 
-        cout << "\n\nWould you like to order another item? ( 1 for yes, 0 for no ): ";
-        cin >> again;
+        cout << "Would you like to make another order? ( 1 for yes, 0 for no): ";
+        cin >> new_order;
 
-    } while ( again == 1);
+
+    } while ( new_order);
 
     back_to_main();
 }
@@ -270,6 +315,9 @@ void print_highest_customer() {
             else { equal = 0; }
         }
     }
+
+
+    
 
 
     if ( !equal ) {
