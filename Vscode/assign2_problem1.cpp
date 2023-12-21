@@ -58,6 +58,7 @@ void initialize_data() {
     first_time = false;
 }
 
+
 int main() {
     
     initialize_data();
@@ -135,6 +136,7 @@ int main() {
     }
 }
 
+
 void add_customer() {
 
     bool again;
@@ -164,6 +166,7 @@ void add_customer() {
 
     back_to_main();
 }
+
 
 void add_item() {
 
@@ -203,6 +206,7 @@ void add_item() {
     back_to_main();
 }
 
+
 void print_customers() {
     
     for (int i = 0; i < customers_number; i++) {
@@ -216,6 +220,7 @@ void print_customers() {
 
     back_to_main();
 }
+
 
 void print_items( bool ask ) {
     
@@ -231,6 +236,7 @@ void print_items( bool ask ) {
         back_to_main();
     }
 }
+
 
 void make_order() {
 
@@ -320,11 +326,13 @@ void make_order() {
     back_to_main();
 }
 
+
 void print_highest_customer() {
 
     int highest_customer_id;
     int highest_points = 0;
-    bool equal = 0;
+    int base_point;
+    bool equal = 1;
 
     // Comparing points 
 
@@ -343,12 +351,13 @@ void print_highest_customer() {
 
         for (int j = 0; j < customers_number - i; i++) {
 
-            if (customers_points[j] == customers_points[j + 1]) {
+            if (customers_points[j] != customers_points[j + 1]) {
 
-                equal = 1;
+                continue;
             }
 
             else {
+                
                 equal = 0;
             }
         }
@@ -367,6 +376,7 @@ void print_highest_customer() {
 
     back_to_main();
 }
+
 
 void sort_customers() {
 
@@ -405,6 +415,7 @@ void sort_customers() {
     back_to_main();
 }
 
+
 void back_to_main() {
 
     bool back;
@@ -419,6 +430,7 @@ void back_to_main() {
         main();
     }
 }
+
 
 void clean_memory() {
 
