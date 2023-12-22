@@ -24,7 +24,6 @@ void add_item();
 void print_customers();
 void print_items( bool ask );
 void make_order();
-void redeem_item();
 void print_highest_customer();
 void sort_customers();
 void back_to_main();
@@ -107,7 +106,7 @@ int main() {
 
     case 6: {
 
-        redeem_item();
+        cout << "";
 
     } break;
 
@@ -326,89 +325,6 @@ void make_order() {
 
     back_to_main();
 }
-void redeem_item() {
-
-    int buyer_id;
-    int order;
-    int points_cost;
-    int orders_counter = 0;
-    int balance;
-    bool reorder;
-    bool proceed;
-    bool new_order;
-
-    cout << "\n\nTo redeem an item, Please input your ID first: ";
-    cin >> buyer_id;
-
-    cout << "Items Menu: " << endl;
-    print_items(0);
-
-    do {
-
-        int total = 0;
-
-        do {
-
-            cout << "\nPlease choose what you would like to order by entering its ID: ";
-            cin >> order;
-
-            orders_counter++;
-
-            for (int i = 0; i < items_number; i++) {
-
-                if (order == items_IDs[i]) {
-
-                    points_cost = items_prices[i] / 4;
-                    total += points_cost;
-                }
-            }
-
-            cout << "\n\nDo you want to redeem another item? (1 for yes, 0 for no): ";
-            cin >> reorder;
-
-            if (reorder) {
-
-                cout << "Type the item ID to redeem it: ";
-            }
-
-        } while (reorder);
-
-        cout << "\n\nThe total is: " << total << " points " << endl;
-
-        cout << "Do you want to contiunue or cancel the order? (1 for yes, 0 to cancel): ";
-        cin >> proceed;
-
-        if (proceed) {
-
-            for (int k = 0; k < customers_number; k++) {
-
-                if (buyer_id == customers_IDs[k]) {
-
-                    if (customers_points[k] >= total) {
-
-                        customers_points[k] -= total;
-                        balance = customers_points[k];
-
-                        cout << "\n-" << total << " points from your account, your current balance is: " << balance << " points" << endl;
-
-                        break;
-                    }
-
-                    else {
-
-                        cout << "\nSorry, You don't have enough points to redeem this item." << endl;
-                    }
-                }
-            }
-        }
-
-        cout << "Would you like to redeem another item? (1 for yes, 0 for no): ";
-        cin >> new_order;
-
-    } while (new_order);
-
-    back_to_main();
-}
 
 
 void print_highest_customer() {
@@ -526,4 +442,3 @@ void clean_memory() {
     delete[] items_names;
     delete[] items_prices;
 }
-cout<<"bye";
