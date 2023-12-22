@@ -295,37 +295,40 @@ void print_highest_customer() {
 
     int highest_customer_id;
     int highest_points = 0;
-    int base_point;
-    bool equal = 1;
+    int equal_customers_counter = 0;
+    bool equal = 0;
+    
+    // int equal_customers_IDs [ MAXIMUM_CUSTOMERS_NUMBER ] {};
+  //  int k = 0;
 
     // Comparing points 
 
     for (int i = 0; i < customers_current_number; i++) {
 
-        if (customers_points[i] > highest_points) {
+        if ( customers_points[i] > highest_points ) {
 
             highest_customer_id = customers_IDs[i];
             highest_points = customers_points[i];
+
         }
     }
 
-    // In case they are equal
+    // In case more than are eqaul in the highest points
 
-    for (int i = 0; i < customers_current_number; i++) {
+    for ( int j = 0; j < customers_current_number; j++ ) {
 
-        for (int j = 0; j < customers_current_number - i; i++) {
+        if ( customers_points[ j ] != highest_points ) {
 
-            if (customers_points[ j ] != customers_points[ j + 1 ]) {
+            continue;
+        }
 
-                continue;
-            }
-
-            else {
-                
-                equal = 0;
-            }
+        else {
+            
+            equal_customers_counter++;    
         }
     }
+
+    if ( equal_customers_counter >= 2 ) { equal = true; }
 
     if (!equal) {
 
@@ -334,11 +337,12 @@ void print_highest_customer() {
     }
     else {
 
-        highest_points = customers_points[0];
-        cout << "\n\nAll customers are equal in points which is: " << highest_points << " Point(s)";
+        cout << "\n\nMore than one customer are equal in points which are: " << highest_points << " Point(s) ";
+        
     }
 
     back_to_main();
+  
 }
 
 
@@ -373,7 +377,7 @@ void sort_customers() {
 
     for (int k = 0; k < customers_current_number; k++) {
 
-        cout << "\n\n#" << k + 1 << " Customer " << sorted_customers_IDs[k] << " Has " << sorted_customers_points[k] << " Point(s)" << endl;
+        cout << "\n\n#" << k + 1 << " || Customer " << sorted_customers_IDs[k] << " Has " << sorted_customers_points[k] << " Point(s)" << endl;
     }
 
     back_to_main();

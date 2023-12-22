@@ -1,1 +1,1 @@
-customers_number++;
+points [ j + 1];
