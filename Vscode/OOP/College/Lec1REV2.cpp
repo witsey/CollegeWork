@@ -8,7 +8,7 @@ int main()
     *pj = j * 3;
     i = *pj + 25;
     pi = pj;
-    *pi = i + 4 * pj;
+    *pi = i + 4 * j;
 
     cout << *pj;
 }
