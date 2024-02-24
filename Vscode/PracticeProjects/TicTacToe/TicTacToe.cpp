@@ -25,6 +25,10 @@ int main()
     getline(cin, player2);
 
     printSpace(1);
+
+    system("pause");
+
+    return 0;
 }
 
 void printSpace( bool first_print  ) 
