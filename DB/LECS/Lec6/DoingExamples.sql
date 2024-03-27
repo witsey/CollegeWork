@@ -67,3 +67,19 @@ on Employee.EmpID = projects.EmpID;
 
  -- EX2
 
+Select projects.ProjectID, Employee.EmpFname, Employee.EmpLname
+From Employee right outer join projects
+on projects.EmpID = Employee.EmpID
+
+ -- EX3
+
+select Employee.EmpFname, Employee.EmpLname, projects.ProjectID
+from Employee full outer join projects
+on Employee.EmpID = projects.EmpID
+
+ -- EX4
+
+
+
+
+
