@@ -1,0 +1,5 @@
+d:\Repositories\College\CollegeWork\DB\Project\TryingC#\obj\Debug\net8.0\TryingC#.GeneratedMSBuildEditorConfig.editorconfig
+d:\Repositories\College\CollegeWork\DB\Project\TryingC#\obj\Debug\net8.0\TryingC#.AssemblyInfoInputs.cache
+d:\Repositories\College\CollegeWork\DB\Project\TryingC#\obj\Debug\net8.0\TryingC#.AssemblyInfo.cs
+d:\Repositories\College\CollegeWork\DB\Project\TryingC#\obj\Debug\net8.0\TryingC#.csproj.CoreCompileInputs.cache
+d:\Repositories\College\CollegeWork\DB\Project\TryingC#\obj\Debug\net8.0\TryingC#.sourcelink.json

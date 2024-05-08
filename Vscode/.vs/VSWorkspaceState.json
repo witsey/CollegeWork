@@ -1,7 +1,12 @@
 {
   "ExpandedNodes": [
-    ""
+    "",
+    "\\CSharp",
+    "\\CSharp\\bin",
+    "\\OldStuff",
+    "\\OOP\\Assignments",
+    "\\OOP\\Assignments\\Assignment2"
   ],
-  "SelectedNode": "\\Test.cpp",
+  "SelectedNode": "\\CSharp\\Program.cs",
   "PreviewInSolutionExplorer": false
 }

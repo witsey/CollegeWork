@@ -99,9 +99,7 @@ where Employees.Country = 'UK' and Employees.Title in ( select Employees.Title f
 /* Get a list of orders (with order dates) that were processed by employees 
 who are not sales representatives: */
 
-select Orders.OrderID, Orders.OrderDate
-from Orders
-where Orders.EmployeeID not in ( select Employees.Title from Employees where Employees.Title = 'sales representatives' )
+select products.s
 
 
 

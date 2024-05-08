@@ -1,0 +1,7 @@
+Country: usa
+Number of players: 1
+Average Height: 170
+Oldest Player's Name: Hazim, His Age: 23
+Youngest Player's Name: Hazim, His Age: 23
+Average international goals: 52
+Player with highest goals: . with: 0 Goals

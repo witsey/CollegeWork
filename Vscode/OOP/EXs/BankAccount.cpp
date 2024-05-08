@@ -97,10 +97,13 @@ public:
 
 int main() {
     BankAccount accounts[5];
+    BankAccount *account;
 
-    for ( int i = 0; i < 5; i++ ) {
-        cout << accounts[i].getAccountNumber() << endl;
-    }
+    BankAccount a1(100, 5);
+
+    account = &a1;
+
+    cout << account->getAccountNumber() << endl;
 
 }
 
@@ -110,5 +113,5 @@ void deposit() {
     
     cout << "Enter deposit value : ";
     cin >> depositValue;
-     
+
 }

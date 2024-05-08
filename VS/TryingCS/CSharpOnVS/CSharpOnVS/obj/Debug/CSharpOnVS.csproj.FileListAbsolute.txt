@@ -1,0 +1,7 @@
+D:\Repositories\College\CollegeWork\VS\TryingCS\CSharpOnVS\CSharpOnVS\bin\Debug\CSharpOnVS.exe.config
+D:\Repositories\College\CollegeWork\VS\TryingCS\CSharpOnVS\CSharpOnVS\bin\Debug\CSharpOnVS.exe
+D:\Repositories\College\CollegeWork\VS\TryingCS\CSharpOnVS\CSharpOnVS\bin\Debug\CSharpOnVS.pdb
+D:\Repositories\College\CollegeWork\VS\TryingCS\CSharpOnVS\CSharpOnVS\obj\Debug\CSharpOnVS.csproj.AssemblyReference.cache
+D:\Repositories\College\CollegeWork\VS\TryingCS\CSharpOnVS\CSharpOnVS\obj\Debug\CSharpOnVS.csproj.CoreCompileInputs.cache
+D:\Repositories\College\CollegeWork\VS\TryingCS\CSharpOnVS\CSharpOnVS\obj\Debug\CSharpOnVS.exe
+D:\Repositories\College\CollegeWork\VS\TryingCS\CSharpOnVS\CSharpOnVS\obj\Debug\CSharpOnVS.pdb
