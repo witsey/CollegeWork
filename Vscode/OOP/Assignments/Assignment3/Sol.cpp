@@ -43,7 +43,9 @@ class Plan
             cout << "Customer Name: " << customerName << endl;
             cout << "Month: " << months[billMonth - 1] << endl;
         }
+};
 
+<<<<<<< Updated upstream
 
 };
 
@@ -89,3 +91,8 @@ public:
         cout << "Minutes consumed: " << minutesConsumed << endl;
     }
 };
+=======
+class PackagePlan : public Plan {
+    
+}
+>>>>>>> Stashed changes
