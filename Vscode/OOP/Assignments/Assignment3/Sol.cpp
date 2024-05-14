@@ -45,6 +45,49 @@ class Plan
         }
 };
 
+class RatePlan : public Plan
+{
+protected:
+    double callRate;
+    int minutesConsumed;
+
+public:
+    protected:
+    double callRate;
+    int minutesConsumed;
+
+public:
+    RatePlan(string customerName, long int phoneNumber, int billMonth, double callRate)
+        : Plan(customerName, phoneNumber, billMonth), callRate(callRate)
+    {
+        minutesConsumed = 0;
+    }
+
+    double calculateBill() override
+    {
+        double billAmount = callRate * minutesConsumed;
+        cout << "Bill Details:" << endl;
+        cout << "Minutes consumed: " << minutesConsumed << endl;
+        cout << "Call Rate: " << callRate << " per minute" << endl;
+        cout << "Total Bill: $" << billAmount << endl;
+        return billAmount;
+    }
+
+    int inputCalls(int hours, int minutes, int seconds) override
+    {
+        minutesConsumed = Plan::inputCalls(hours, minutes, seconds);
+        return minutesConsumed;
+    }
+
+    void printAccountDetails() override
+    {
+        Plan::printAccountDetails();
+        cout << "Call Rate: " << callRate << " per minute" << endl;
+        cout << "Minutes consumed: " << minutesConsumed << endl;
+    }
+};
+
+
 class PackagePlan : public Plan {
     private:
         int allowedMins;
