@@ -1,5 +1,6 @@
 #include <iostream>
 #include <map>
+#include <list>
 #include <string>
 using namespace std;
 
@@ -32,6 +33,14 @@ class Patient {
             this->priority = condition_to_priority(condition);
 
         }
+
+        void print() {
+            cout << endl;
+            cout << "Patient name: " << this->name << endl;
+            cout << "Patient age: " << this->age << endl;
+            cout << "Patient condition: " << this->condition << endl;
+            cout << "Patient priority: " << this->priority << endl;
+        }
 };
 
 
@@ -54,14 +63,16 @@ class PatientNode
 class SortedLinkedList
 {
 
+    private: int size;
     public:
         PatientNode *head, *tail;
-        SortedLinkedList() { this->head = this->tail = nullptr; }
+        SortedLinkedList() { this->head = this->tail = nullptr; size = 0;}
         
 
         // node insertion
         void add_to_head(Patient new_patient) 
         {
+            size++;
             if (head == nullptr) { this->head = this->tail = new PatientNode(new_patient); }
 
             else 
@@ -73,6 +84,7 @@ class SortedLinkedList
 
         void add_to_tail(Patient new_patient) 
         {
+            size++;
             if (tail == nullptr) { this->head = this->tail = new PatientNode(new_patient); }
 
             else
@@ -85,7 +97,7 @@ class SortedLinkedList
 
         void add_to_middle(Patient new_patient) 
         {
-
+            size++;
             if (head == 0)  {add_to_head(new_patient); return;}
 
             PatientNode* current = head->next;
@@ -105,62 +117,150 @@ class SortedLinkedList
 
             prev->next = new PatientNode(new_patient);
             prev->next->next = current;
+
+
+            if (current == nullptr)
+                tail = prev->next;
+
             return;
             
         }
 
 
-        // node deletion
-        void delete_from_head() 
+        PatientNode* delete_from_head() 
         {
-            if (head == tail) 
-            {
-                delete head;
-                head = tail = nullptr;
-                return;
-            }
+           if (head == nullptr) return nullptr;
 
+
+            --size;
             PatientNode* tmp = head;
             head = head->next;
-            delete tmp;
-        }
+            
+            if (head == nullptr) 
+                tail = nullptr;
 
-
-        void delete_from_tail() 
-        {
-            if (tail == head) 
-            {
-                delete_from_head(); // empty list or one element so it doesn't matter
-                return;
-            }
-
-            PatientNode* cur = head;
-            while(cur->next != tail) cur = cur->next;
-
-            tail = cur;
-            delete tail->next;
-            tail->next = nullptr;
+            tmp->next = nullptr; 
+            return tmp;
         }
 
 
         // printing the list
         void print() 
         {
-            
+            PatientNode* current = head;
+            while (current) 
+            {
+                current->patient.print();
+                current = current->next;
+            }
         }
 
+        int getSize() {return this->size;}
 
-        ~SortedLinkedList() {delete this->head; delete this->tail;}
+
+        ~SortedLinkedList() 
+        {
+            while (head) 
+            {
+                PatientNode* tmp = head;
+                head = head->next;
+                delete tmp;
+            }
+        }
 };
 
 
 class PriorityQueue {
     public:
         SortedLinkedList queue;
+        list<PatientNode*> processed_patients;
 
-        
+
+        bool isEmpty() {return queue.getSize() == 0;}
+
+        void add_patient(Patient new_patient) {
+
+            switch (new_patient.priority)
+            {
+                case 3:
+                    queue.add_to_tail(new_patient);
+                    break;
+                
+                default:
+                    queue.add_to_middle(new_patient);
+                    break;
+            } 
+        }
+
+
+        void proccess_patient() {
+
+            PatientNode* highest_patient = queue.delete_from_head();
+
+            if (highest_patient != nullptr)
+            {
+                processed_patients.push_front(highest_patient);
+                highest_patient->patient.print();
+                cout << endl;
+            }
+        }
+
+        void display() 
+        {
+            cout << "-----------CURRENT PATIENTS: " << endl;
+            queue.print();
+
+            cout << endl;
+        }
+        int size() {return queue.getSize();}
+
+
+        void display_processed_patients() 
+        {
+            cout << "---------------PREVIOUS PATIENTS:" << endl;
+            for (PatientNode* node : processed_patients) 
+            {
+                node->patient.print();
+            }
+
+            cout << endl;
+        }
+
+
+        string& FrontName() 
+        {
+            string name = queue.head->patient.name;
+
+            if (this->isEmpty())  throw "Queue is empty.";
+
+            display_processed_patients();
+            display();
+            cout << this->size() << " PATIENTS IN THE QUEUE." << endl;
+
+            return name;
+        } 
 };
 
 
 
-int main() {return 0;}
+int main() 
+{
+    PriorityQueue p;
+    
+    Patient p1("A", 19, "normal");
+    Patient p2("B", 21, "normal");
+    Patient p3("C", 22, "normal");
+    Patient p4("D", 29, "normal");
+
+    p.add_patient(p1);
+    p.add_patient(p2);
+    p.add_patient(p3);
+    p.add_patient(p4);
+
+    p.proccess_patient();
+    p.proccess_patient();
+
+    string name = p.FrontName();
+    cout << name;
+    return 0;
+}

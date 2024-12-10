@@ -99,7 +99,8 @@ class BST
             {
                 for (int i = 0; i < q.size(); ++i) 
                 {
-                    node = q.pop();
+                    node = q.front();
+                    node
                     if (node) 
                     {
                         q.push(node->left);

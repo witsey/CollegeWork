@@ -1,0 +1,12 @@
+int main()
+{
+ int a;
+ int b=100;
+ a=7;
+ b=22;
+ int c=3;
+ c=55;
+ int d;
+ a=9;
+ return 0;
+}
