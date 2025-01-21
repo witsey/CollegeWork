@@ -27,7 +27,7 @@ class LinkedList
         Node<type> *head, *tail;
         LinkedList() { this->head = this->tail = nullptr; size = 0;}
         
-        // node insertion
+        
         void add_to_head(type val) 
         {
             size++;
@@ -67,7 +67,7 @@ class LinkedList
         }
 
 
-        // node deletion
+        
         void delete_from_head() 
         {
             --size;
@@ -87,7 +87,7 @@ class LinkedList
         {
             if (tail == head) 
             {
-                delete_from_head(); // empty list or one element so it doesn't matter
+                delete_from_head(); 
                 return;
             }
 
@@ -120,7 +120,7 @@ class LinkedList
             --size;
         }
 
-        // printing the list
+
         void print() 
         {
             Node<type>* cur = head;

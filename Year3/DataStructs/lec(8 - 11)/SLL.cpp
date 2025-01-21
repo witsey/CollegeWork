@@ -25,7 +25,7 @@ class LinkedList
         Node<type> *head, *tail;
         LinkedList() { this->head = this->tail = nullptr; }
         
-        // node insertion
+
         void add_to_head(type val) 
         {
             if (head == nullptr) { this->head = this->tail = new Node<type>(val); }
@@ -62,7 +62,6 @@ class LinkedList
         }
 
 
-        // node deletion
         void delete_from_head() 
         {
             if (head == tail) 
@@ -93,6 +92,7 @@ class LinkedList
             tail->next = nullptr;
         }
 
+
         void delete_from_mid(type target) 
         {
             if (head == tail) { delete_from_head(); return; }
@@ -112,7 +112,7 @@ class LinkedList
             delete tmp; 
         }
 
-        // printing the list
+        
         void print() 
         {
             Node<type>* cur = head;
@@ -132,41 +132,12 @@ class LinkedList
 
 int main() 
 {
-    // Node<int>* head = new Node<int>(3);
-    // head->next = new Node<int>(4);
-    // head->next->next = new Node<int>(5);
-
     LinkedList<int> l1;
-    l1.add_to_head(1);
-    l1.add_to_tail(2);
+    LinkedList<int> l2;
+
+    l1.add_to_tail(1);
+    l1.add_to_tail(4);
     l1.add_to_tail(3);
 
-    l1.print();
 
-    l1.add_to_middle(4, 1);
-    cout << endl;
-
-    l1.print();
-
-    l1.delete_from_mid(4);  
-    cout << endl;
-    
-    l1.print();
-
-    l1.delete_from_tail();
-    cout << endl;
-
-    l1.print();
-
-    l1.delete_from_head();
-    cout << endl;
-
-    l1.print();
-
-
-    l1.delete_from_tail();
-    cout << endl;
-
-    l1.print();
-    
 }

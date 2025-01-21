@@ -65,6 +65,23 @@ class Queue
 
             cout << endl;
         }
+
+
+        int getSize() 
+        {
+            if (isEmpty()) return 0;
+            if (first == last) return 1;
+
+            int cnt = 1;
+
+            int i = first;
+            while (true) 
+            {
+                i = (i + 1) % size;
+                cnt++;
+                if (i == last) return cnt;
+            } 
+        }
 };
 
 
@@ -80,11 +97,5 @@ int main()
 
     q1.display();
 
-    q1.enqueue(5);
-    q1.display();
-
-    q1.dequeue();
-    q1.dequeue();
-    q1.dequeue();
-    q1.display();
+    cout << endl << q1.getSize();
 }

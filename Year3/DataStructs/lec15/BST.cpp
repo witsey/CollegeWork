@@ -20,6 +20,7 @@ class Node
 };
 
 
+
 template <typename type>
 class BST
 {
@@ -31,6 +32,7 @@ class BST
         BST() : root(nullptr) {}
         void clear() {root = nullptr;}
         bool isEmpty() {return root == nullptr;}
+
 
         void insert(const type& data) 
         {
@@ -90,27 +92,39 @@ class BST
 
         void BFS() 
         {
-            queue<Node<type>*> q;
-            Node<type>* node = root;
+            
+        }
 
-            q.push(node);
-
-            while (!(q.empty())) 
+        void pre_order(Node<type>* node = root) 
+        {
+            if (node != 0) 
             {
-                for (int i = 0; i < q.size(); ++i) 
-                {
-                    node = q.front();
-                    node
-                    if (node) 
-                    {
-                        q.push(node->left);
-                        q.push(node->right);
-
-                        cout << node->data;
-                    }
-                }
+                cout << node->data << " ";
+                pre_order(node->left);
+                pre_order(node->right)
             }
         }
+
+        void in_order(Node<type>* node = root) 
+        {
+            if (node != 0) 
+            {
+                pre_order(node->left);
+                cout << node->data << " ";
+                pre_order(node->right)
+            }
+        }
+
+        void post_order(Node<type>* node = root) 
+        {
+            if (node != 0) 
+            {
+                pre_order(node->left);
+                pre_order(node->right)
+                cout << node->data << " ";
+            }
+        }
+        
 };
 
 
